@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
 const hashtagSchema = mongoose.Schema({
-    title: String,
-    required: true,
+    title: {
+        type: String,
+        required: true,
+    },
     tweets:[
         {
             type: mongoose.Schema.Types.ObjectId,
