@@ -1,7 +1,9 @@
 import Tweet from '../models/tweet.js';
-
-class TweetRepository{
-
+import CurdRepository from './curd-repository.js';
+class TweetRepository extends CurdRepository{
+        constructor(){
+            super(Tweet);
+        }
 
     async create(data){
 
@@ -14,14 +16,6 @@ class TweetRepository{
     }
 
 
-    async get(id){
-        try{
-            const tweet = await Tweet.findById(id);
-            return tweet;
-           }catch(error){
-            console.error(error);
-           }
-    }
     async getwithComments(id){
         try{
         const tweet = await Tweet.findById(id).populate({path: 'comments'}).lean();;
@@ -39,18 +33,19 @@ class TweetRepository{
             console.error(error);
            }
     }
-    async destroy(id){
-        try{
-            const tweet = await Tweet.findByIdAndDelete(id);
-            return tweet;
-           }catch(error){
-            console.error(error);
-           }
-    }
+    
     async getAll(offset, limit){
         try{
             const tweets = await Tweet.find().skip(offset).limit(limit);
             return tweets;
+           }catch(error){
+            console.error(error);
+           }
+    }
+    async find(id){
+        try{
+            const tweet = await Tweet.findById(id).populate({path: 'likes'});
+            return tweet;
            }catch(error){
             console.error(error);
            }
