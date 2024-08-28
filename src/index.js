@@ -19,12 +19,12 @@ app.listen(port, async() => {
     .catch(() => console.log(' cant connect database'));
       
 
-    const userRepository = new UserRepostory();
-    const tweetRepository = new TweetRepository();
-    const tweets = await tweetRepository.getAll(0,10);
-    const users = await userRepository.getAll();
-     const likeService = new LikeService();
-     likeService.toggleLike(tweets[0].id, 'Tweet', users[0].id);
+    // const userRepository = new UserRepostory();
+    // const tweetRepository = new TweetRepository();
+    // const tweets = await tweetRepository.getAll(0,10);
+    // const users = await userRepository.getAll();
+    //  const likeService = new LikeService();
+    //  likeService.toggleLike(tweets[0].id, 'Tweet', users[1].id);
 })
 
 
