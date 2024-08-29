@@ -25,3 +25,21 @@ export const singup = async(req, res)=>{
         })
     }
 }
+
+export const login = async(req, res)=>{
+    try {
+        const token = await userService.singin(req.body)
+        res.json({
+            success: true,
+            data: token,
+            message: "User logged in successfully",
+            error: {}
+        });
+    } catch (error) {
+        res.status(401).json({
+            success: false,
+            data: {},
+            error: error.message || "Invalid credentials"
+        });
+    }
+}
