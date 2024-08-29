@@ -5,10 +5,9 @@ import {TweetRepository, CommentRepository} from '../repository/index.js';
 class CommentService  {
     constructor(){
         this.commentRepo = new CommentRepository();
-        this.tweetRepo = new TweetRepository();
+        this.tweetRepository = new TweetRepository();
     }
     async create(modelId, modelType, userId,content ){
-//    console.log( 'modelId', modelId,'modelType', modelType, 'userId',userId, 'content', content );
         if(modelType == 'Tweet') {
             var commentable = await this.tweetRepository.get(modelId);
            } else if(modelType == 'Comment'){
